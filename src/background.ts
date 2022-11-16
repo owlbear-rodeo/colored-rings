@@ -14,7 +14,7 @@ OBR.onReady(() => {
     icons: [
       {
         icon,
-        label: "Status Rings",
+        label: "Colored Rings",
         filter: {
           min: 1,
           every: [
