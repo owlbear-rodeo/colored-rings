@@ -1,0 +1,10 @@
+{
+  "name": "Simple Status Rings",
+  "version": "1.0.0",
+  "manifest_version": 1,
+  "author": "Owlbear Rodeo",
+  "homepage_url": "https://owlbear.app",
+  "icon": "/logo.png",
+  "background_url": "/background.html",
+  "description": "Add simple coloured status rings to any character"
+}

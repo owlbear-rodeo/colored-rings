@@ -1,0 +1,52 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: white;
+}
+
+.colors {
+  max-width: 200px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.color-button {
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  box-sizing: border-box;
+  cursor: pointer;
+  position: relative;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  background-color: transparent;
+  outline: 0;
+  border: 0;
+  margin: 0;
+  user-select: none;
+}
+
+.color {
+  width: 24px;
+  height: 24px;
+  /* Create a circle with a clip path to allow transition from full to hollow */
+  clip-path: path(
+    "M 12 0 A 12 12 0 0 1 12 24 A 12 12 0 0 1 12 0 M 12 12 A 0 0 0 0 0 12 12 A 0 0 0 0 0 12 12"
+  );
+  transition: all 100ms ease 0s;
+}
+
+/* Hollow out the circle when selected */
+.selected .color {
+  clip-path: path(
+    "M 12 0 A 12 12 1 1 1 12 24 A 12 12 1 1 1 12 0 M 12 3 A 9 9 0 0 0 12 21 A 9 9 0 0 0 12 3"
+  );
+}
+
+.color-button:hover .color {
+  transform: scale(1.2);
+}
