@@ -8,15 +8,15 @@ tags:
   - built-by-owlbear
   - tool
   - combat
-manifest:
+manifest: https://colored-rings.owlbear.rodeo/manifest.json
 learn-more: https://owlbear.app
 ---
 
 # Colored Rings
 
-This extension can add simple colored rings to any Character image. If you want to be able to add colored rings like you did in Owlbear Rodeo 1.0 then this is the extension for you.
+This extension can add simple colored rings to any Character image.
 
-### How to use
+**How to use**
 
 Select your character token and then click the colored rings icon that appears on the context menu. You can choose what color you would like your ring. Select another color to add another ring.
 
