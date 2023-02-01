@@ -21,6 +21,7 @@ OBR.onReady(() => {
             { key: "type", value: "IMAGE" },
             { key: "layer", value: "CHARACTER" },
           ],
+          permissions: ["UPDATE"],
         },
       },
     ],
