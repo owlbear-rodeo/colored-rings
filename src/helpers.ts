@@ -1,6 +1,14 @@
 import OBR, { isShape, Item, Image, buildShape } from "@owlbear-rodeo/sdk";
 import { getPluginId } from "./getPluginId";
 
+export function isPlainObject(
+  item: unknown
+): item is Record<keyof any, unknown> {
+  return (
+    item !== null && typeof item === "object" && item.constructor === Object
+  );
+}
+
 /** Update the selected state of the color buttons */
 export async function updateColorButtons(items: Item[]) {
   const selection = await OBR.player.getSelection();
@@ -10,8 +18,10 @@ export async function updateColorButtons(items: Item[]) {
   });
   // Get all the status rings that are attached to our current selection
   for (const item of items) {
+    const metadata = item.metadata[getPluginId("metadata")];
     if (
-      item.metadata[getPluginId("metadata")]?.enabled &&
+      isPlainObject(metadata) &&
+      metadata.enabled &&
       isShape(item) &&
       item.attachedTo &&
       selection?.includes(item.attachedTo)
@@ -68,10 +78,15 @@ export function buildStatusRing(
 /** Update the status rings for the current selection so that there are no gaps */
 export function updateStatusRingScales(selection: string[]) {
   return OBR.scene.items.updateItems(
-    (item) =>
-      item.metadata[getPluginId("metadata")]?.enabled &&
-      item.attachedTo &&
-      selection.includes(item.attachedTo),
+    (item) => {
+      const metadata = item.metadata[getPluginId("metadata")];
+      return Boolean(
+        isPlainObject(metadata) &&
+          metadata.enabled &&
+          item.attachedTo &&
+          selection.includes(item.attachedTo)
+      );
+    },
     (items) => {
       for (const id of selection) {
         const attached = items.filter((item) => item.attachedTo == id);

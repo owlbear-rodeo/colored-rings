@@ -3,6 +3,7 @@ import { colors } from "./colors";
 import { getPluginId } from "./getPluginId";
 import {
   buildStatusRing,
+  isPlainObject,
   updateColorButtons,
   updateStatusRingScales,
 } from "./helpers";
@@ -56,9 +57,10 @@ async function handleButtonClick(button: HTMLButtonElement) {
     // Get all selected items
     const items = await OBR.scene.items.getItems<Image>(selection);
     // Get all status rings in the scene
-    const statusRings = await OBR.scene.items.getItems<Shape>((item) =>
-      Boolean(item.metadata[getPluginId("metadata")]?.enabled)
-    );
+    const statusRings = await OBR.scene.items.getItems<Shape>((item) => {
+      const metadata = item.metadata[getPluginId("metadata")];
+      return Boolean(isPlainObject(metadata) && metadata.enabled);
+    });
     // Get the grid dpi so we can scale the rings
     const dpi = await OBR.scene.grid.getDpi();
     for (const item of items) {
