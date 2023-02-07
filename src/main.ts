@@ -40,7 +40,7 @@ OBR.onReady(async () => {
     });
 
   // Update the button states with the current selection
-  const allItems = await OBR.scene.items.getItems(() => true);
+  const allItems = await OBR.scene.items.getItems();
   updateColorButtons(allItems);
   // Add change listener for updating button states
   OBR.scene.items.onChange(updateColorButtons);

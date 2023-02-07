@@ -16,7 +16,6 @@ OBR.onReady(() => {
         icon,
         label: "Colored Rings",
         filter: {
-          min: 1,
           every: [
             { key: "type", value: "IMAGE" },
             { key: "layer", value: "CHARACTER" },
@@ -27,6 +26,7 @@ OBR.onReady(() => {
     ],
     onClick(_, elementId) {
       OBR.popover.open({
+        id: getPluginId("color-picker"),
         url: "/",
         height: 80,
         width: 200,
