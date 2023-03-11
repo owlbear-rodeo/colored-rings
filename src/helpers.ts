@@ -76,7 +76,8 @@ export function buildStatusRing(
 }
 
 /** Update the status rings for the current selection so that there are no gaps */
-export function updateStatusRingScales(selection: string[]) {
+export function updateStatusRingScales(selectedItems: Item[]) {
+  const selection = selectedItems.map((item) => item.id);
   return OBR.scene.items.updateItems(
     (item) => {
       const metadata = item.metadata[getPluginId("metadata")];
@@ -88,10 +89,10 @@ export function updateStatusRingScales(selection: string[]) {
       );
     },
     (items) => {
-      for (const id of selection) {
-        const attached = items.filter((item) => item.attachedTo == id);
+      for (const item of selectedItems) {
+        const attached = items.filter((i) => i.attachedTo === item.id);
         for (let i = 0; i < attached.length; i++) {
-          const scale = 1 - i * 0.1;
+          const scale = item.scale.x * (1 - i * 0.1);
           attached[i].scale = { x: scale, y: scale };
         }
       }

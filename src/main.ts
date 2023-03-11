@@ -77,7 +77,12 @@ async function handleButtonClick(button: HTMLButtonElement) {
         circlesToDelete.push(...currentColorRings.map((ring) => ring.id));
       } else {
         circlesToAdd.push(
-          buildStatusRing(item, color, dpi, 1 - attachedRings.length * 0.1)
+          buildStatusRing(
+            item,
+            color,
+            dpi,
+            item.scale.x * (1 - attachedRings.length * 0.1)
+          )
         );
       }
     }
@@ -88,7 +93,7 @@ async function handleButtonClick(button: HTMLButtonElement) {
       await OBR.scene.items.deleteItems(circlesToDelete);
       // After deleting a ring adjust the scale of the selected rings
       // so that we don't have any gaps
-      await updateStatusRingScales(selection);
+      await updateStatusRingScales(items);
     }
   }
 }
