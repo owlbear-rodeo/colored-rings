@@ -70,6 +70,7 @@ export function buildStatusRing(
     .metadata({ [getPluginId("metadata")]: { enabled: true } })
     .layer("ATTACHMENT")
     .disableHit(true)
+    .visible(item.visible)
     .build();
 
   return circle;
