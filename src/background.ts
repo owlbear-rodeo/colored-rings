@@ -24,14 +24,9 @@ OBR.onReady(() => {
         },
       },
     ],
-    onClick(_, elementId) {
-      OBR.popover.open({
-        id: getPluginId("color-picker"),
-        url: "/",
-        height: 88,
-        width: 216,
-        anchorElementId: elementId,
-      });
+    embed: {
+      url: "/",
+      height: 88,
     },
   });
 });
