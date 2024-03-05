@@ -1,7 +1,10 @@
 import OBR from "@owlbear-rodeo/sdk";
 import { getPluginId } from "./getPluginId";
 
-import icon from "./status.svg";
+const icon = new URL(
+  "./status.svg#icon",
+  import.meta.url,
+).toString();
 
 /**
  * This file represents the background script run when the plugin loads.
